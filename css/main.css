@@ -1,0 +1,147 @@
+body {
+	margin: 0;
+	background: url(../img/login_bg.jpg) no-repeat center center fixed;
+	background-size: cover;
+	font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+}
+#loginBtn {
+	width: 200px;
+	height: 43px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loginHeader {
+	padding: 16px;
+	height: 64px;
+}
+#loginHeader img {
+	float: left;
+}
+#headerTitle {
+	margin: 0;
+	color: #FFF;
+	font-size: 30px;
+	padding-top: 15px;
+	padding-left: 80px;
+	text-shadow: black 0.1em 0.1em 0.2em;
+}
+.header {
+	background-color: #2E2E2E;
+}
+#profilePic {
+	border-radius: 50px;
+	position: absolute;
+	top: 5px;
+	right: 16px;
+}
+#userName {
+	top: 8px;
+}
+#userBirthday {
+	top: 37px;
+}
+#userEmail {
+	top: 66px;
+}
+.userInfos {
+	position: absolute;
+	right: 118px;
+	text-shadow: black 0.1em 0.1em 0.2em;
+	color: #FFF;
+	font-size: 18px;
+}
+.section {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px 0;
+	background-color: #F8F8F8;
+	text-align: center;
+	box-shadow: black 0.1em 0.1em 0.2em;
+	font-size: 18px;
+	color: #2E2E2E;
+}
+.appSelect {
+	margin-bottom: 18px;
+	width: 166px;
+	height: 40px;
+	margin-top: 8px;
+	border: 1px solid #294C87;
+	background: url(../img/downArrow.png) no-repeat right transparent;
+	font-size: 16px;
+	background-size: 32px 32px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.smallSection {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 10px 0;
+	background-color: #F8F8F8;
+	float: left;
+	box-shadow: black 0.1em 0.1em 0.2em;
+	font-size: 18px;
+	color: #2E2E2E;
+}
+#insightsResponse {
+	width: 50%;
+	float: left;
+	background-color: #F8F8F8;
+	text-align: left;
+	padding-left: 16px;
+}
+#compareInsightsContainer {
+	position: absolute;
+	top: 482px;
+	left: 50%;
+	padding-left: 16px;
+	background-color: #F8F8F8;
+	width: 484px;
+}
+#searchbox {
+	margin-bottom: 18px;
+	width: 166px;
+	height: 40px;
+	margin-top: 8px;
+	border: 1px solid #294C87;
+	font-size: 16px;
+}
+.appBtn {
+	display: block;
+	margin: 0 auto;
+	border: 1px solid #294C87;
+	padding: 0;
+	width: 266px;
+	height: 32px;
+	background-color: #4D68A0;
+	color: #FFFFFF;
+	font-size: 16px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	border-radius: 50px;
+}
+#compareInsights {
+	margin-top: 0;
+}
+#compareDates {
+	margin-bottom: 0;
+}
+#dbDataResponse {
+	text-align: center;
+}
+.redResponse {
+	color: red;
+}
+.greenResponse {
+	color: green;
+}
+#logoutBtn {
+position: absolute;
+top: 114px;
+right: 0px;
+}
