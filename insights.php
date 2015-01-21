@@ -86,19 +86,20 @@ if (isset($session)) {
   $request = new FacebookRequest($session, 'GET', '/' . $_POST['pageID'] . '/insights');
   $response = $request->execute();
   $insights = $response ->getGraphObject()->asArray();
+  //print_r($insights);
   $html = '<div id="insightsContainer">';
 
-  $date = substr($insights['data']['0']->values['2']->end_time, 0, 10);
+  $date = substr($insights['data']['0']->values['0']->end_time, 0, 10);
 
   $html .= '<p>' . $date . '</p>';
   $db_data = $date;
 
-  $page_fans = $insights['data']['165']->values['2']->value;
+  $page_fans = $insights['data']['165']->values['0']->value;
 
   $html .= '<p>Page fans - ' . $page_fans . '</p><p>Fans sorted by location:<ul>';
   $db_data .= ',' . $page_fans . ',';
 
-  $page_fans_city = $insights['data']['167']->values['1']->value;
+  $page_fans_city = $insights['data']['167']->values['0']->value;
   $i = 0;
   foreach ($page_fans_city as $key => $value) {
   	$html .= '<li>' . $key . ' - ' . $value . '</li>';
@@ -109,17 +110,17 @@ if (isset($session)) {
   	}
   }
 
-  $page_fan_adds_unique = $insights['data']['0']->values['2']->value;
+  $page_fan_adds_unique = $insights['data']['0']->values['0']->value;
 
   $html .= '</ul></p><p>New fans - ' . $page_fan_adds_unique . '</p>';
   $db_data .= $page_fan_adds_unique . ',';
 
-  $page_fan_removes_unique = $insights['data']['3']->values['2']->value;
+  $page_fan_removes_unique = $insights['data']['3']->values['0']->value;
 
   $html .= '<p>Unlikes - ' . $page_fan_removes_unique . '</p><p>Fans sorted by gender & age:<ul>';
   $db_data .= $page_fan_removes_unique . ',';
 
-  $page_fans_gender_age = $insights['data']['171']->values['1']->value;
+  $page_fans_gender_age = $insights['data']['171']->values['0']->value;
   $i = 0;
   foreach ($page_fans_gender_age as $key => $value) {
   	$html .= '<li>' . $key . ' - ' . $value . '</li>';
@@ -130,28 +131,28 @@ if (isset($session)) {
   	}
   }
 
-  $page_views_unique = $insights['data']['201']->values['1']->value;
+  $page_views_unique = $insights['data']['201']->values['0']->value;
 
   $html .= '</ul></p><p>Page views - ' . $page_views_unique . '</p>';
   $db_data .= $page_views_unique . ',';
 
-  $page_posts_impressions_viral_unique = $insights['data']['119']->values['2']->value;
+  $page_posts_impressions_viral_unique = $insights['data']['119']->values['0']->value;
 
   $html .= '<p>Trending posts impressions - ' . $page_posts_impressions_viral_unique . '</p><p>Consumption types:<ul>';
   $db_data .= $page_posts_impressions_viral_unique . ',';
 
-  $page_consumptions_by_consumption_type_unique = $insights['data']['137']->values['2']->value;
+  $page_consumptions_by_consumption_type_unique = $insights['data']['137']->values['0']->value;
   foreach ($page_consumptions_by_consumption_type_unique as $key => $value) {
   	$html .= '<li>' . $key . ' - ' . $value . '</li>';
   	$db_data .= $key . ' - ' . $value . ',';
   }
 
-  $page_engaged_users = $insights['data']['189']->values['2']->value;
+  $page_engaged_users = $insights['data']['189']->values['0']->value;
 
   $html .= '</ul></p><p>Engaged Users - ' . $page_engaged_users . '</p><p>Negative feedback types:<ul>';
   $db_data .= $page_engaged_users . ',';
 
-  $page_negative_feedback_by_type_unique = $insights['data']['153']->values['2']->value;
+  $page_negative_feedback_by_type_unique = $insights['data']['153']->values['0']->value;
   foreach ($page_negative_feedback_by_type_unique as $key => $value) {
   	$html .= '<li>' . $key . ' - ' . $value . '</li>';
   	$db_data .= $key . ' - ' . $value . ',';
@@ -159,7 +160,7 @@ if (isset($session)) {
 
   $html .= '</ul></p><p>Positive feedback types:<ul>';
 
-  $page_positive_feedback_by_type_unique = $insights['data']['159']->values['2']->value;
+  $page_positive_feedback_by_type_unique = $insights['data']['159']->values['0']->value;
   foreach ($page_positive_feedback_by_type_unique as $key => $value) {
   	$html .= '<li>' . $key . ' - ' . $value . '</li>';
   	$db_data .= $key . ' - ' . $value . ',';
