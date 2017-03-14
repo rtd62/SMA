@@ -1,4 +1,4 @@
-# SMA
+# Social Media Analytics (Facebook Page Insights)
 Web-app that analyzes a Facebook's page insights [update in progress]
 
 I forked this from another user. a
