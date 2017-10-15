@@ -7,6 +7,6 @@ session_start();
 session_destroy();
 
 // redirect back to website home
-header( 'Location: http://localhost/sma/' );
+header('Location: /');
 
 ?>
