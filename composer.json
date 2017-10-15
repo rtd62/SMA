@@ -1,0 +1,8 @@
+{
+    "name": "rtd62/facebook-insights",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": { "Facebook\\": "Facebook/" }
+    }
+}

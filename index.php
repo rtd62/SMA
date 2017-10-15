@@ -1,47 +1,7 @@
 <?php
-require_once './vendor/autoload.php';
-// include required files from Facebook SDK
+require_once 'config.php';
 use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
-use Facebook\FacebookRequestException;
-
-// start session
-session_start();
-
-// init Social Media Analysis with app id and secret
-FacebookSession::setDefaultApplication('1501451756809750','c6ea8a75ba70d8a2ab2ac72d0d5511fd');
-
-// login helper with redirect_uri
-$helper = new FacebookRedirectLoginHelper('http://localhost/');
-
-// see if a existing session exists
-if (isset($_SESSION) && isset($_SESSION['fb_token'])) {
-  // create new session from saved access_token
-  $session = new FacebookSession($_SESSION['fb_token']);
-  // validate the access_token to make sure it's still valid
-  try {
-    if (!$session->validate()) {
-      $session = null;
-    }
-  } catch (Exception $e) {
-    // catch any exceptions
-    $session = null;
-  }
-}
-
-if (!isset($session) || $session === null) {
-  // no session exists
-  try {
-    $session = $helper->getSessionFromRedirect();
-  } catch(FacebookRequestException $ex) {
-    // when Facebook returns an error
-    print_r($ex);
-  } catch(Exception $ex) {
-    // when validation fails or other local issues
-    print_r($ex);
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +54,7 @@ if (isset($session)) {
   ?>
   <div class="section">
     <p>Search for a Facebook page:</p>
-    <input type="text" class="search" id="searchbox">
+    <input type="text" class="search" id="searchbox"> <button style="padding: 12px;">Search</button> <!--For handler onChange-->
     <div id="display"></div>
   </div>
   <div id="adminPagesInfo" class="section">
@@ -126,82 +86,6 @@ if (isset($session)) {
 }
 ?>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#viewInsights').change(function(){
-    $('#insightsResponse').html('<img src="img/loading.gif">');
-    $.ajax({
-      type: 'POST',
-      url: 'insights.php',
-      data: {
-        pageID : $('#viewInsights').val()
-      },
-      success: function(response) {
-        $('#insightsResponse').html(response);
-        $('#saveInsightsDb').on('click',function(){
-          $('#dbDataResponse').html('<img src="img/loading.gif">');
-          $.ajax({
-            type: 'POST',
-            url: 'db_handler.php',
-            data: {
-              db_data : $('#dbData').val(),
-              page_id : $('#viewInsights').val()
-            },
-            success: function(response) {
-              $('#dbDataResponse').html(response);
-            }
-          });
-        });
-        $('#compareInsights').on('click',function(){
-          $('#compareInsightsContainer').html('<img src="img/loading.gif">');
-          $.ajax({
-            type: 'POST',
-            url: 'db_handler.php',
-            data: {
-              compare_entry : $('#compareDates').val()
-            },
-            success: function(response) {
-             var compareFirstTop = $('#insightsResponse').position().top;
-             $('#compareInsightsContainer').css('top',compareFirstTop);
-             $('#compareInsightsContainer').html(response);
-            }
-          })
-        })
-      }
-    });
-    return false;
-  });
-  $('#searchbox').keyup(function(){
-    var searchbox = $(this).val();
-    var dataString = 'searchword=' + searchbox;
-    if(!searchbox == ''){
-      $.ajax({
-        type: 'POST',
-        url: 'search.php',
-        data: dataString,
-        success: function(response){
-          $('#display').html(response);
-          $('.publicPage').on('click',function(){
-            var thisBtn = $(this);
-            thisBtn.next().html('<img src="img/loading.gif">');
-            $.ajax({
-              type: 'POST',
-              url: 'public_pages.php',
-              data: {
-                public_page_id : thisBtn.prev().val()
-              },
-              success: function(response){
-                thisBtn.next().html(response);
-              }
-            })
-            return false;
-          })
-        }
-      });
-    }
-    return false;
-  });
-})
-</script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
